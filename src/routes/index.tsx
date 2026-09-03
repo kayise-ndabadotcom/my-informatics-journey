@@ -186,19 +186,27 @@ function useScrollSpy(ids: string[]) {
 
 function useReveal() {
   useEffect(() => {
+    const reveal = (el: Element) => el.classList.add("revealed");
+    const els = Array.from(document.querySelectorAll(".reveal"));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
+            reveal(entry.target);
             observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.12 },
     );
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    els.forEach((el) => observer.observe(el));
+    // Fallback: if the observer never fires (e.g. throttled/hidden tab),
+    // reveal everything so content is never stuck invisible.
+    const fallback = window.setTimeout(() => els.forEach(reveal), 1800);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 }
 
