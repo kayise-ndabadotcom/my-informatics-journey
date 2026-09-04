@@ -741,6 +741,81 @@ function Education() {
   );
 }
 
+function CertificationCard({
+  cert,
+  index,
+}: {
+  cert: (typeof CERTIFICATIONS)[number];
+  index: number;
+}) {
+  return (
+    <div
+      className="card-hover reveal glass flex h-full flex-col rounded-2xl p-6"
+      style={{ animationDelay: `${index * 0.08}s` }}
+    >
+      <span className="inline-flex size-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
+        <Award className="size-5" />
+      </span>
+      <h3 className="mt-3 font-semibold">{cert.name}</h3>
+      <p className="mt-1 text-sm text-muted-foreground">
+        {cert.org ?? "Issuing organisation — to be added"}
+      </p>
+      <p className="mt-2 font-mono text-xs text-primary">
+        {cert.year ?? "Date — to be added"}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {cert.description ?? "Description — to be added"}
+      </p>
+
+      {cert.courses.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {cert.courses.slice(0, 3).map((course) => (
+            <span
+              key={course}
+              className="rounded-full border border-border bg-background/50 px-2 py-0.5 text-[10px] text-muted-foreground"
+            >
+              {course}
+            </span>
+          ))}
+          {cert.courses.length > 3 && (
+            <span className="rounded-full border border-border bg-background/50 px-2 py-0.5 text-[10px] text-muted-foreground">
+              +{cert.courses.length - 3} more
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className="mt-auto pt-5">
+        {cert.file ? (
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={cert.file}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3.5 py-1.5 font-mono text-xs text-primary transition-colors hover:bg-primary/20"
+            >
+              <ExternalLink className="size-3.5" />
+              View Certificate
+            </a>
+            <a
+              href={cert.file}
+              download
+              className="inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+            >
+              <Download className="size-3.5" />
+              Download
+            </a>
+          </div>
+        ) : (
+          <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-border px-3.5 py-1.5 font-mono text-xs text-muted-foreground">
+            Certificate file not uploaded yet
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Certifications() {
   return (
     <section id="certifications" className="section-pad relative">
@@ -751,37 +826,13 @@ function Certifications() {
           eyebrow="Certifications"
           title="Credentials & Learning"
         />
-        <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CERTIFICATIONS.map((cert, i) => (
-            <div
-              key={cert.name}
-              className="card-hover reveal glass rounded-2xl p-6"
-              style={{ animationDelay: `${i * 0.08}s` }}
-            >
-              <span className="inline-flex size-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
-                <Award className="size-5" />
-              </span>
-              <h3 className="mt-3 font-semibold">{cert.name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{cert.org}</p>
-              <p className="mt-2 font-mono text-xs text-primary">{cert.year}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {cert.courses.slice(0, 3).map((course) => (
-                  <span
-                    key={course}
-                    className="rounded-full border border-border bg-background/50 px-2 py-0.5 text-[10px] text-muted-foreground"
-                  >
-                    {course}
-                  </span>
-                ))}
-                {cert.courses.length > 3 && (
-                  <span className="rounded-full border border-border bg-background/50 px-2 py-0.5 text-[10px] text-muted-foreground">
-                    +{cert.courses.length - 3} more
-                  </span>
-                )}
-              </div>
-            </div>
+            <CertificationCard key={cert.name} cert={cert} index={i} />
           ))}
         </div>
+      </div>
+
       </div>
     </section>
   );
