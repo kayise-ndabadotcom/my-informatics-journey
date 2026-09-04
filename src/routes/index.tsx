@@ -143,11 +143,27 @@ const EDUCATION = {
   ],
 };
 
-const CERTIFICATIONS = [
+// ------------------------------------------------------------
+// CERTIFICATIONS
+// To add a certificate file: drop the PDF (or PNG/JPG) into
+// public/certificates/ and set `file` below to
+// "/certificates/<your-file-name>.pdf".
+// Leave `file: null` while a certificate document is not uploaded yet.
+// ------------------------------------------------------------
+const CERTIFICATIONS: {
+  name: string;
+  org: string | null;
+  year: string | null;
+  description: string | null;
+  courses: string[];
+  file: string | null;
+}[] = [
   {
     name: "Google AI Essentials",
     org: "Google",
     year: "2026",
+    description:
+      "Foundational program covering practical, responsible use of AI tools in everyday work.",
     courses: [
       "Introduction to AI",
       "Maximize Productivity With AI Tools",
@@ -155,8 +171,18 @@ const CERTIFICATIONS = [
       "Use AI Responsibly",
       "Stay Ahead of the AI Curve",
     ],
+    file: "/certificates/google-ai-essentials.pdf",
+  },
+  {
+    name: "Agility Python Training Program",
+    org: null, // TODO: add issuing organisation
+    year: null, // TODO: add completion date
+    description: null, // TODO: add a short description
+    courses: [],
+    file: "/certificates/agility-python-training-program.pdf",
   },
 ];
+
 
 const EXPERIENCE = [
   {
