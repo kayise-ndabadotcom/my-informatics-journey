@@ -157,6 +157,7 @@ const CERTIFICATIONS: {
   description: string | null;
   courses: string[];
   file: string | null;
+  filename: string;
 }[] = [
   {
     name: "Google AI Essentials",
@@ -173,6 +174,7 @@ const CERTIFICATIONS: {
     ],
     // Upload as: public/certificates/google-ai-essentials.pdf then set the path below
     file: null,
+    filename: "NtombikayiseNdaba_GoogleAIEssentials.pdf",
   },
   {
     name: "Agility Python Training Program",
@@ -183,6 +185,7 @@ const CERTIFICATIONS: {
     courses: [],
     // Upload as: public/certificates/agility-python-training-program.pdf then set the path below
     file: null,
+    filename: "Ntombikayise Mercia Ndaba.pdf",
   },
 ];
 
@@ -809,7 +812,7 @@ function CertificationCard({
           </div>
         ) : (
           <span className="inline-flex items-center gap-2 rounded-full border border-dashed border-border px-3.5 py-1.5 font-mono text-xs text-muted-foreground">
-            Certificate file not uploaded yet
+            {cert.filename}
           </span>
         )}
       </div>
