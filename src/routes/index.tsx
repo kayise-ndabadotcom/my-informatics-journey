@@ -177,8 +177,9 @@ const CERTIFICATIONS: {
   {
     name: "Agility Python Training Program",
     org: null, // TODO: add issuing organisation
-    year: null, // TODO: add completion date
-    description: null, // TODO: add a short description
+    year: "2025",
+    description:
+      "Focused on foundational Python programming. Gained practical skills in user input handling, decision-making, loops, data structures, and functions, culminating in a final project. The training emphasized hands-on coding, problem-solving, and preparation for real-world applications in technology, delivered by Africa Agility Foundation.",
     courses: [],
     // Upload as: public/certificates/agility-python-training-program.pdf then set the path below
     file: null,
