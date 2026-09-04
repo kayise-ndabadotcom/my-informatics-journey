@@ -171,7 +171,8 @@ const CERTIFICATIONS: {
       "Use AI Responsibly",
       "Stay Ahead of the AI Curve",
     ],
-    file: "/certificates/google-ai-essentials.pdf",
+    // Upload as: public/certificates/google-ai-essentials.pdf then set the path below
+    file: null,
   },
   {
     name: "Agility Python Training Program",
@@ -179,7 +180,8 @@ const CERTIFICATIONS: {
     year: null, // TODO: add completion date
     description: null, // TODO: add a short description
     courses: [],
-    file: "/certificates/agility-python-training-program.pdf",
+    // Upload as: public/certificates/agility-python-training-program.pdf then set the path below
+    file: null,
   },
 ];
 
