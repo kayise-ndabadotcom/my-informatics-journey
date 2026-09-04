@@ -833,7 +833,6 @@ function Certifications() {
         </div>
       </div>
 
-      </div>
     </section>
   );
 }
